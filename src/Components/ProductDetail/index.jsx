@@ -5,7 +5,7 @@ import { ShoppingCartContext } from "../../Context"
 
 import './styles.css'
 
-const ProductDetail = ({ product }) => {
+const ProductDetail = () => {
 	const {isProductDetailOpen, closeProductDetail, productToShow} = useContext(ShoppingCartContext)
 
 	return (
@@ -15,7 +15,7 @@ const ProductDetail = ({ product }) => {
 				<div onClick={() => closeProductDetail()}><XMarkIcon className="h-6 w-6 text-black cursor-pointer" /></div>
 			</div>
 			<figure className="px-6">
-				<img src={productToShow.images[0]} alt={productToShow.title} className='w-full h-full rounded-lg' />
+				<img src={productToShow.images} alt={productToShow.title} className='w-full h-full rounded-lg' />
 			</figure>
 			<p className="flex flex-col p-6">
         <span className='text-2xl font-medium mb-2'>{productToShow.price}</span>
