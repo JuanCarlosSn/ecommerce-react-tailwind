@@ -7,7 +7,12 @@ import OrderCard from "../OrderCard"
 import './styles.css'
 
 const CheckoutSideMenu = () => {
-	const {isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts } = useContext(ShoppingCartContext)
+	const {isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts, setCartProducts } = useContext(ShoppingCartContext)
+
+	const handleDelete = (id) => {
+		const filterdProducts = cartProducts.filter((product) => product.id !== id)
+        setCartProducts(filterdProducts)
+    }
 
 	return (
 		<aside className={`${isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed bg-white right-0 border border-black rounded-lg`}>
@@ -15,18 +20,20 @@ const CheckoutSideMenu = () => {
 				<h2 className='font-medium text-xl'>My Order</h2>
 				<div onClick={() => closeCheckoutSideMenu()}><XMarkIcon className="h-6 w-6 text-black cursor-pointer" /></div>
 			</div>
-            <div className="px-6 overflow-y-scroll">
-                {
-                    cartProducts.map((product) => (
-                        <OrderCard
-                            key={product.id}
-                            title={product.title}
-                            imageUrl={product.images[0]}
-                            price={product.price}
-                        />
-                    ))
-                }
-            </div>
+				<div className="px-6 overflow-y-scroll">
+					{
+						cartProducts.map((product) => (
+							<OrderCard
+								key={product.id}
+                                id={product.id}
+								title={product.title}
+								imageUrl={product.images[0]}
+								price={product.price}
+                                handleDelete={() => handleDelete(product.id)}
+							/>
+						))
+					}
+				</div>
 		</aside>
 	);
 };
