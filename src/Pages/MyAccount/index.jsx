@@ -1,13 +1,10 @@
-import Layout from "../../Components/Layout"
+import Layout from '../../Components/Layout'
 
 function MyAccount() {
-
   return (
-    <>
     <Layout>
       MyAccount
     </Layout>
-    </>
   )
 }
 
